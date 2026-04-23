@@ -1,15 +1,34 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace FOBackend.Models
 {
+    // Order entity — represents a placed order
     public class Order
     {
+        [Key]
         public int OrderId { get; set; }
-        public int UserId { get; set; }
-        public decimal TotalAmount { get; set; }
-        public string Status { get; set; } = string.Empty;
-        public DateTime OrderDate { get; set; }
 
-        // Navigation properties
-        // public User User { get; set; }
+        // Foreign key to User who placed the order
+        [Required]
+        public int UserId { get; set; }
+
+        // Navigation: the user who placed this order
+        [ForeignKey("UserId")]
+        public User User { get; set; } = null!;
+
+        // Total cost of the order
+        [Required, Column(TypeName = "decimal(10,2)")]
+        public decimal TotalAmount { get; set; }
+
+        // Status: PENDING, CONFIRMED
+        [Required, MaxLength(20)]
+        public string Status { get; set; } = "PENDING";
+
+        // When the order was placed
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+
+        // Navigation: items in this order
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
