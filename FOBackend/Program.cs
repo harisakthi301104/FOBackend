@@ -29,17 +29,17 @@ builder.Services.AddSingleton(jwtSettings);
 // Register Auth module services (Rubesh)
 builder.Services.AddScoped<AuthService>();
 
-// Register Menu/Admin module services (Hariharan) — will be created by Hariharan
-// builder.Services.AddScoped<CategoryService>();
-// builder.Services.AddScoped<ItemService>();
+//Register Menu/Admin module services (Hariharan) — will be created by Hariharan
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ItemService>();
 
-// Register Cart/Order module services (Nithish Khanna) — will be created by Nithish
-// builder.Services.AddScoped<CartService>();
-// builder.Services.AddScoped<OrderService>();
+//Register Cart/Order module services (Nithish Khanna) — will be created by Nithish
+builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<OrderService>();
 
-// Register Inventory/History module services (Sudharsan) — will be created by Sudharsan
-// builder.Services.AddScoped<InventoryService>();
-// builder.Services.AddScoped<OrderHistoryService>();
+//Register Inventory/History module services (Sudharsan) — will be created by Sudharsan
+builder.Services.AddScoped<InventoryService>();
+builder.Services.AddScoped<OrderHistoryService>();
 
 // Add JWT authentication
 builder.Services.AddAuthentication(options =>
