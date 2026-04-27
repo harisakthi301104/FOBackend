@@ -7,7 +7,6 @@ namespace FOBackend.Controllers
 {
     [ApiController]
     [Route("api/admin")]
-    [Authorize(Roles = "ADMIN")]
     public class AdminController : ControllerBase
     {
         private readonly CategoryService _categoryService;
@@ -19,9 +18,7 @@ namespace FOBackend.Controllers
             _itemService = itemService;
         }
 
-        // ─── CATEGORY ENDPOINTS ───────────────────────────────────────────
-
-        /// <summary>Create a new category</summary>
+    
         [HttpPost("categories")]
         public async Task<ActionResult<CategoryDto>> CreateCategory([FromBody] CreateCategoryRequest req)
         {
@@ -31,7 +28,6 @@ namespace FOBackend.Controllers
             return CreatedAtAction(nameof(CreateCategory), new { id = result.CategoryId }, result);
         }
 
-        /// <summary>Update an existing category</summary>
         [HttpPut("categories/{id}")]
         public async Task<ActionResult<CategoryDto>> UpdateCategory(int id, [FromBody] CreateCategoryRequest req)
         {

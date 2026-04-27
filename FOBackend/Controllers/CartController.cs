@@ -2,6 +2,7 @@ using FOBackend.DTOs.Cart;
 using FOBackend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FOBackend.Controllers
 {
@@ -19,9 +20,8 @@ namespace FOBackend.Controllers
 
         private int GetUserId()
         {
-            // Parse from JWT Claims
-            // return int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            return 1; // Placeholder
+            return int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return 1;
         }
 
         [HttpGet]
